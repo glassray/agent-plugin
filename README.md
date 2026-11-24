@@ -1,20 +1,14 @@
-# Glassray skills
+# Glassray agent plugin
 
-Agent skills for [Glassray](https://glassray.ai), the evaluation layer that makes AI agents
-self-improve. A skill is a folder of instructions a coding agent loads on demand; these follow
-the open [Agent Skills](https://agentskills.io) format and work in Claude Code, Cursor, Codex,
-GitHub Copilot, VS Code, and any other agent that supports it.
-
-[![skills.sh](https://skills.sh/b/glassray/skills)](https://skills.sh/glassray/skills)
+Set up tracing and create and calibrate custom evaluators with [Glassray](https://glassray.ai).
+The plugin bundles three [Agent Skills](https://agentskills.io) and connects your coding agent to your Glassray workspace over MCP.
 
 ## Glassray plugin
-
-Set up tracing, then create and calibrate custom evaluators in your coding agent. The plugin connects to your Glassray workspace over MCP.
 
 ### Claude Code
 
 ```bash
-claude plugin marketplace add glassray/skills
+claude plugin marketplace add glassray/agent-plugin
 claude plugin install glassray@glassray-skills
 ```
 
@@ -23,7 +17,7 @@ Start a new session and use `/mcp` to sign in to Glassray.
 ### Codex
 
 ```bash
-codex plugin marketplace add glassray/skills
+codex plugin marketplace add glassray/agent-plugin
 codex plugin add glassray@glassray-skills
 ```
 
@@ -36,13 +30,13 @@ Try “Set up Glassray tracing for this repo.” If your traces are already flow
 Any agent that supports Agent Skills, via the `skills` CLI:
 
 ```bash
-npx skills add glassray/skills --skill glassray-otel
+npx skills add glassray/agent-plugin --skill glassray-otel
 ```
 
 Claude Code, as a plugin:
 
 ```bash
-claude plugin marketplace add glassray/skills
+claude plugin marketplace add glassray/agent-plugin
 claude plugin install glassray-otel@glassray-skills
 ```
 
@@ -55,7 +49,7 @@ Or hand an agent the single file: https://glassray.ai/SKILL.md
 Send an AI agent's traces to Glassray from whatever OpenTelemetry setup is already in the repo,
 and confirm they land. Reads the repo first, routes by what it finds, tags
 every trace with `glassray.customer` / `agent` / `flow`, and refuses to call it done until a
-trace has arrived. [Read the skill.](skills/glassray-otel/SKILL.md)
+trace has arrived. [Read the skill.](plugins/glassray/skills/glassray-otel/SKILL.md)
 
 **Use when:**
 
