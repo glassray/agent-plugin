@@ -1,0 +1,29 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "glassray",
+  "version": "0.1.0",
+  "description": "Create and calibrate Glassray evaluators with your coding agent.",
+  "author": {
+    "name": "Glassray"
+  },
+  "homepage": "https://glassray.ai",
+  "repository": "https://github.com/glassray/skills",
+  "license": "MIT",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Glassray",
+        "shortDescription": "Create and calibrate evals",
+        "longDescription": "Draft custom evaluators and calibrate them against traces in your connected Glassray workspace.",
+        "developerName": "Glassray",
+        "category": "Developer Tools",
+        "websiteURL": "https://glassray.ai",
+        "supportURL": "https://github.com/glassray/skills/issues",
+        "privacyPolicyURL": "https://www.getvera.ai/privacy-policy",
+        "termsOfServiceURL": "https://www.glassray.ai/terms-and-conditions",
+        "composerIcon": "./assets/icon.png",
+        "logo": "./assets/icon.png"
+      }
+    }
+  }
+}

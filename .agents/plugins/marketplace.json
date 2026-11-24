@@ -1,0 +1,20 @@
+{
+  "name": "glassray-skills",
+  "interface": {
+    "displayName": "Glassray"
+  },
+  "plugins": [
+    {
+      "name": "glassray",
+      "source": {
+        "source": "local",
+        "path": "./plugins/glassray"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    }
+  ]
+}

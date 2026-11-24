@@ -7,7 +7,31 @@ GitHub Copilot, VS Code, and any other agent that supports it.
 
 [![skills.sh](https://skills.sh/b/glassray/skills)](https://skills.sh/glassray/skills)
 
-## Install
+## Glassray evaluator plugin
+
+Create and calibrate custom evaluators in your coding agent. The plugin includes both skills and connects to your Glassray workspace over MCP.
+
+### Claude Code
+
+```bash
+claude plugin marketplace add glassray/skills
+claude plugin install glassray@glassray-skills
+```
+
+Start a new session and use `/mcp` to sign in to Glassray.
+
+### Codex
+
+```bash
+codex plugin marketplace add glassray/skills
+codex plugin add glassray@glassray-skills
+```
+
+Start a new session and sign in to Glassray when prompted.
+
+Try “Draft a Glassray evaluator for DEV-123,” using a deviation number from your workspace. See the [plugin guide](plugins/glassray/README.md) for how to resume calibration.
+
+## Install the tracing skill
 
 Any agent that supports Agent Skills, via the `skills` CLI:
 

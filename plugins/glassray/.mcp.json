@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "glassray": {
+      "type": "http",
+      "url": "https://app.glassray.ai/api/public/mcp"
+    }
+  }
+}
