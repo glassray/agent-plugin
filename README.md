@@ -3,7 +3,13 @@
 Set up tracing and create and calibrate custom evaluators with [Glassray](https://glassray.ai).
 The plugin bundles three [Agent Skills](https://agentskills.io) and connects your coding agent to your Glassray workspace over MCP.
 
-## Glassray plugin
+## Skills included
+
+- **Set up tracing.** Connect the tracing in your repo and verify that a test trace reaches Glassray. [Tracing skill](plugins/glassray/skills/glassray-otel/SKILL.md)
+- **Create an evaluator.** Use evidence from traces to draft and test an evaluator for a deviation. [Creation skill](plugins/glassray/skills/glassray-create-evaluator/SKILL.md)
+- **Calibrate an evaluator.** Test the draft on sampled traces, resolve edge cases, and check how consistently it behaves. [Calibration skill](plugins/glassray/skills/glassray-calibrate-evaluator/SKILL.md)
+
+## Install the plugin
 
 ### Claude Code
 
@@ -25,45 +31,24 @@ Start a new session and sign in to Glassray when prompted.
 
 Try “Set up Glassray tracing for this repo.” If your traces are already flowing, try “Draft a Glassray evaluator for DEV-123,” using a deviation number from your workspace. See the [plugin guide](plugins/glassray/README.md) for how to update the plugin or resume calibration.
 
-## Install the tracing skill
+## Install tracing on its own
 
-Any agent that supports Agent Skills, via the `skills` CLI:
+The standalone install includes the tracing setup skill. Use it to send traces or troubleshoot an OpenTelemetry exporter. [OpenTelemetry setup guide](https://glassray.ai/docs/otlp-ingestion)
+
+Use the `skills` CLI with agents that support Agent Skills.
 
 ```bash
 npx skills add glassray/agent-plugin --skill glassray-otel
 ```
 
-Claude Code, as a plugin:
+In Claude Code, you can also install it from the marketplace.
 
 ```bash
 claude plugin marketplace add glassray/agent-plugin
 claude plugin install glassray-otel@glassray-skills
 ```
 
-Or hand an agent the single file: https://glassray.ai/SKILL.md
-
-## Skills
-
-### glassray-otel
-
-Send an AI agent's traces to Glassray from whatever OpenTelemetry setup is already in the repo,
-and confirm they land. Reads the repo first, routes by what it finds, tags
-every trace with `glassray.customer` / `agent` / `flow`, and refuses to call it done until a
-trace has arrived. [Read the skill.](plugins/glassray/skills/glassray-otel/SKILL.md)
-
-**Use when:**
-
-- "Send our traces to Glassray" / "connect Glassray" - with an existing OpenTelemetry setup in
-  Python, Node, Ruby, Go, Java or .NET
-- Pointing the Vercel AI SDK, Strands Agents, Google ADK, Pydantic AI, OpenLLMetry,
-  OpenInference, OpenLIT or an OpenTelemetry Collector at Glassray
-- Tagging traces so Glassray can slice them by customer, agent, flow, user and session
-- Traces aren't arriving - `401`, `403`, `415`, or an empty Traces view
-
-**Not for** querying an organization's existing traces, flows or deviations - that is the
-[Glassray MCP server](https://glassray.ai/docs/mcp-server).
-
-**Docs:** [Send traces with OpenTelemetry](https://glassray.ai/docs/otlp-ingestion)
+You can also give your agent the [tracing skill as a single file](https://glassray.ai/SKILL.md).
 
 ## Contributing
 
