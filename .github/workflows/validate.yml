@@ -41,6 +41,8 @@ jobs:
               }
             }
           '
+      - name: Bundled tracing skill matches the standalone skill
+        run: cmp skills/glassray-otel/SKILL.md plugins/glassray/skills/glassray-otel/SKILL.md
       - name: Every docs link in every SKILL.md resolves
         # Only documentation / site links (glassray.ai). API endpoints on app.glassray.ai are
         # not pages - the OTLP base path 404s on GET by design - and the skill's own curl
