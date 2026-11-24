@@ -1,0 +1,24 @@
+---
+name: glassray-create-evaluator
+description: Draft or revise a custom Glassray evaluator for a deviation, starting from trace evidence and testing the evaluator locally before saving it. Use for building an evaluator, repairing its code or prompt, or preparing a draft for calibration.
+---
+
+# Create a Glassray evaluator
+
+Produce an unpublished evaluator version that checks a written deviation recipe on the agreed traces.
+
+Keep evaluator working files uncommitted. If the runner needs a model API key, read it from the environment.
+
+Use plain language in every message to the user, from the first update to the final report. Start with what happened, what you found, or the decision they need to make. Use their words for the work and explain any necessary Glassray term the first time it matters. Keep tool details in the background unless they help the user act. Keep quotes, counts, prices and IDs exact. If the user asks for a simpler explanation, say the same thing in simpler words.
+
+For example, say “The draft checks reports and skips meeting notes. The free check showed that the AI gets both sets of figures it needs to compare, the client’s originals and the ones in the report.”
+
+1. **Find the starting point.** Use the Glassray MCP connection for the requested workspace and project. If the tools are unavailable, tell the user what is missing. Read `get_evaluator_guide` for the current file contract, runner version and workflow. If the user named a deviation, use `get_deviation` to read its recipe and examples, then check its saved evaluators. Reuse the intended draft when revising it. If starting from a new problem, create a deviation when requested or needed and keep its description in the user's words.
+2. **Find the evidence.** Look at representative real traces and identify the report or output, the source evidence and any steps that change what the reader sees. Find a case that should count and a similar case that should pass or be skipped, where available. Keep track of the Glassray trace IDs you read so calibration can exclude them from its random draws.
+3. **Set the rule.** Use the existing recipe or write a plain-language rule that says what counts and what does not. Check unclear business rules with the user. Before drafting, ask at most one yes-or-no question and state the assumptions you made from the traces. When changing a recipe, show the changed lines and their reason before confirming the Glassray preview.
+4. **Read the code before running it.** Inspect the source, settings and effective recipe together. Check that preprocessing preserves the needed evidence and that skips match the intended scope. A custom prompt must actually send `ctx.recipe` to the judge. For a code-only evaluator, check how the code implements the recipe. Use the guide's stage contract and keep business rules in the recipe where possible.
+5. **Verify the inputs locally.** Use the guide's version of `npx @glassray/evaluator` and run `--stages-only --show prompt,pieces` on a few representative traces. Pass the actual settings and recipe and any context fields the code uses. Inspect the selected pieces and expected skips. If the evaluator uses a judge, verify that the generated prompt contains the recipe, source evidence and output. This verifies the inputs without the main model call. The runner's `check` validates the file for a save and serves a different purpose.
+6. **Show the scope and try the draft.** Before a full run, explain which outputs the evaluator checks or skips and what filter would select them. Use the scope the user already confirmed or get agreement if it is unsettled. Try the full runner on a few representative traces and inspect the reasons. Report any blocked checks and identify a coding tool or different-model run as a trial. Use the guide's model routes and the user's authorization for any metered calls.
+7. **Save from disk.** Run the save checks. Use `get_evaluator_upload_link`, the runner's `upload`, and then `create_evaluator` or `save_evaluator_version` with `source_upload`. Include the plain-language steps where the tool requires them. Follow the save preview when required and verify the stored hash matches the runner's upload. Treat the signed upload and download links as credentials and keep them and downloaded traces out of chat and version control.
+
+Report the saved draft reference, the scope and filter, what you verified, and what remains untested. Carry the previously read trace IDs forward. Use the calibration workflow when the user asks to calibrate. Publishing or activating an evaluator requires separate authorization.

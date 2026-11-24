@@ -16,10 +16,14 @@ and depth lives in the public docs (`https://glassray.ai/docs/...`, `llms.txt`,
 ## Layout
 
 ```
-skills/<name>/SKILL.md            one folder per skill; the folder name must equal the frontmatter `name`
-.claude-plugin/marketplace.json   one plugin entry per skill
-.github/workflows/validate.yml    reference validator + link check, on every push
+skills/<name>/SKILL.md                  standalone skills
+plugins/<plugin>/skills/<name>/SKILL.md skills bundled with a plugin
+.claude-plugin/marketplace.json         Claude Code marketplace
+.agents/plugins/marketplace.json        Codex marketplace
+.github/workflows/validate.yml          reference validator + link check, on every push
 ```
+
+The skill folder name must match `name` in its frontmatter.
 
 ## Rules
 
@@ -39,7 +43,7 @@ skills/<name>/SKILL.md            one folder per skill; the folder name must equ
 ## Before opening a PR
 
 ```bash
-for d in skills/*/; do npx -y skills-ref validate "$d"; done
+for d in skills/*/ plugins/*/skills/*/; do npx -y skills-ref validate "$d"; done
 ```
 
 CI runs the same validator plus a link check over every `https://` URL in every `SKILL.md`.

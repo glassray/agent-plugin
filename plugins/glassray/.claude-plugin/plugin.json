@@ -1,0 +1,13 @@
+{
+  "name": "glassray",
+  "version": "0.1.0",
+  "description": "Create and calibrate Glassray evaluators with your coding agent.",
+  "author": {
+    "name": "Glassray"
+  },
+  "homepage": "https://glassray.ai",
+  "repository": "https://github.com/glassray/skills",
+  "license": "MIT",
+  "icon": "./assets/icon.png",
+  "privacyPolicyUrl": "https://www.getvera.ai/privacy-policy"
+}
