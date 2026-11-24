@@ -1,6 +1,6 @@
-# Glassray evaluator plugin
+# Glassray plugin
 
-Create and calibrate custom evaluators from Claude Code or Codex. The plugin includes two skills and connects your agent to Glassray over MCP.
+Set up tracing and create and calibrate custom evaluators from Claude Code or Codex. The plugin connects your agent to Glassray over MCP.
 
 ## Installation
 
@@ -22,8 +22,14 @@ codex plugin add glassray@glassray-skills
 
 Start a new Codex session and sign in to Glassray when prompted. In the desktop app, you can also install **glassray** from **Glassray** in the Plugins directory after adding the marketplace.
 
+## Update
+
+- **Claude Code** — run `claude plugin marketplace update glassray-skills`, then `claude plugin update glassray@glassray-skills`.
+- **Codex** — run `codex plugin marketplace upgrade glassray-skills`, then `codex plugin add glassray@glassray-skills`.
+
 ## Try it
 
+- “Set up Glassray tracing for this repo.” The agent checks the tracing you already have and verifies a test trace in Glassray.
 - “Draft a Glassray evaluator for DEV-123.” Use a deviation number from your Glassray workspace.
 - “Resume calibration for DEV-123/E1.” Use the reference for your evaluator.
 

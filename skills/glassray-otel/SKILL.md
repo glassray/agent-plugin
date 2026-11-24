@@ -1,10 +1,10 @@
 ---
 name: glassray-otel
-description: "Send an AI agent's traces to Glassray (app.glassray.ai) from an existing OpenTelemetry setup, and confirm they land. Use when asked to connect or integrate Glassray, send traces to Glassray, point an OTel / OTLP exporter (Python, Node, Ruby, Go, Java, .NET) at Glassray, connect the Vercel AI SDK, Strands Agents, Google ADK, Pydantic AI, OpenLLMetry, OpenInference, OpenLIT or an OpenTelemetry Collector to Glassray, tag traces with glassray.customer / glassray.agent / glassray.flow, or debug traces that aren't arriving (401, 403, 415, an empty Traces view). Not for querying an organization's existing traces, flows or deviations - that is the Glassray MCP server."
+description: "Set up tracing for an AI agent and confirm that a test trace reaches Glassray. Use when asked to send traces to Glassray, connect an OpenTelemetry / OTLP exporter or Collector, set up tracing for the Vercel AI SDK, Strands Agents, Google ADK, Pydantic AI, OpenLLMetry, OpenInference, or OpenLIT, tag traces with glassray.customer / glassray.agent / glassray.flow, or troubleshoot traces that are missing."
 license: MIT
 metadata:
   author: glassray
-  version: "0.1.0"
+  version: "0.2.0"
   homepage: "https://glassray.ai/docs/otlp-ingestion"
 ---
 
@@ -18,6 +18,9 @@ product can slice them, and proves they arrived.
 
 ## 1 · Ground rules
 
+- Use this workflow when the user asks to set up or fix tracing, or accepts an offer to do so.
+- Explain in plain language what tracing the repo already has, where traces will go, and how you will verify that they arrived.
+- Confirm the intended Glassray project before creating a source or sending a test trace.
 - **Never `git commit` or `git push`.** Leave changes uncommitted for the human to review.
 - **Never hardcode the key.** It lives in the environment as `GLASSRAY_API_KEY` (or the
   OTel `OTEL_EXPORTER_OTLP_HEADERS` var); never in source or a committed file.
@@ -276,7 +279,7 @@ child. Full attribute list incl. cost: https://glassray.ai/docs/sdk-byo-otel.
    `200` = key and endpoint are right; go look for the `smoke-test` trace. Anything else, see
    the error table below.
 
-2. **Run the app once** so it produces a real trace, then confirm it arrived **with its tags**:
+2. **Run the app once with test input** so it produces a trace, then confirm it arrived **with its tags**:
    the **Traces** view in Glassray (the source flips to _Connected_), or over MCP (§9)
    `get_setup_status` → `list_traces` → `get_trace` and read the tags on the trace.
 3. **Nothing arrived?** Turn on the OTel SDK's own diagnostics (`OTEL_LOG_LEVEL=debug`, or a
@@ -297,18 +300,10 @@ child. Full attribute list incl. cost: https://glassray.ai/docs/sdk-byo-otel.
 
 ## 9 · After traces land
 
-Everything past this point - finding, analyzing and acting on the traces, flows, deviations and
-LLM cost now flowing in - is the Glassray MCP server, not this skill:
-
-```bash
-claude mcp add --transport http glassray https://app.glassray.ai/api/public/mcp
-```
-
-OAuth by default; headless with `--header "Authorization: Bearer <org-key>"` from **Settings →
-API keys → MCP access**. That org key is deliberately different from the `traces:write` ingest
-key. During verification (§8), `get_setup_status` → `list_traces` → `get_trace` confirms a
-trace and its tags without opening the dashboard. Full tool reference and other clients:
-https://glassray.ai/docs/mcp-server.
+Use the existing Glassray MCP connection to find and analyze the traces. The Glassray plugin
+includes this connection. If you installed the skill on its own and need to connect your client,
+follow https://glassray.ai/docs/mcp-server. Headless clients use an MCP key from
+**Settings → API keys → MCP access**. The `traces:write` key is for sending traces.
 
 ## 10 · Reading the docs
 

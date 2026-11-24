@@ -25,6 +25,10 @@ plugins/<plugin>/skills/<name>/SKILL.md skills bundled with a plugin
 
 The skill folder name must match `name` in its frontmatter.
 
+Edit `skills/glassray-otel/SKILL.md` when changing tracing setup. Copy that file to
+`plugins/glassray/skills/glassray-otel/SKILL.md` for the bundled install. CI checks that the
+two files match.
+
 ## Rules
 
 - **One skill per job, never per language or framework.** Route by what's found in the repo
