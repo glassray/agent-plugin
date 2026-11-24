@@ -13,6 +13,24 @@ Use plain language in every message to the user, from the first update to the fi
 
 For example, say “The draft checks reports and skips meeting notes. The free check showed that the AI gets both sets of figures it needs to compare, the client’s originals and the ones in the report.”
 
+**When asking a question.** Lead with the question or decision. Give just enough context to explain why it matters or what will change. For a rule question, show a short excerpt of what the agent was given and what it produced. Add a second example only when it helps the person draw the line. Keep exact trace names, section labels and IDs that help them find the evidence. Use plain language around those labels. Make each answer choice say what it means. Use buttons when available or short labels in chat.
+
+If the rule is already agreed and you need approval to save it, start with the save decision and show the changed lines. Keep that confirmation focused on saving.
+
+For a rule question, use a format like this.
+
+> **Should the evaluator flag this wording in a client letter?**
+>
+> The general instructions allow the client's name. This section tells the writer to use “you.”
+>
+> **`report.generate` · `Appendix`**
+>
+> **Section instruction** — “Write directly to the client using ‘you.’”
+>
+> **Letter** — “Ms Patel should review the risks.”
+>
+> **Flag this wording** · **Allow it here**
+
 1. **Start with the known examples.** Identify the requested Glassray workspace and project before searching. Read `get_evaluator_guide`. Look up the existing deviation, its recipe, examples and evaluator drafts first. Create a deviation only when needed. Use the known examples before doing a wider search. Read enough real traces to show a clear case and a close example that should pass or be skipped, when available. Check local model access while gathering evidence, without making a model call. Keep the IDs of traces you read for later calibration. If a filter returns nothing, check whether the project is empty. Offer `glassray-otel` if it needs traces and wait for the user to choose tracing setup.
 2. **Agree on the broad scope.** Show what the evaluator would check and skip, and give the exact Glassray filter, view or flow. Explain any extra check the evaluator applies when the filter cannot express the whole scope. Get agreement on new or unsettled scope. Use a real example to ask about the biggest unresolved boundary, such as which documents are in scope or what makes a case count. Ask one yes-or-no question at a time and wait for the answer. Use decisions the user already made. Move on once the broad decisions are clear and keep smaller questions for calibration.
 3. **Make the saved recipe match the decision.** Compare the effective recipe with what the user wants, even when a recipe already exists. When they differ, show the changed lines and why, preview with `update_deviation`, and save after the user approves that preview. Test against the recipe version the draft will use. If the recipe decision is pending, show the blocker and keep any work local. Keep the rule in the recipe so the prompt and code give the same instruction.
