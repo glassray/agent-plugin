@@ -16,7 +16,7 @@ jobs:
       - name: Agent Skills reference validator
         run: |
           set -e
-          for d in skills/*/ plugins/*/skills/*/; do
+          for d in plugins/*/skills/*/; do
             npx -y skills-ref validate "$d"
           done
       - name: Marketplace manifests point to existing plugins and skills
@@ -25,10 +25,13 @@ jobs:
           node -e '
             const m = require("./.claude-plugin/marketplace.json");
             const fs = require("fs");
-            const dirs = fs.readdirSync("skills");
-            const listed = m.plugins.flatMap(p => p.skills ?? []).map(s => s.replace("./skills/", ""));
-            for (const d of dirs) if (!listed.includes(d)) { console.error("not in marketplace.json:", d); process.exit(1); }
-            for (const s of listed) if (!dirs.includes(s)) { console.error("in marketplace.json but missing:", s); process.exit(1); }
+            for (const entry of m.plugins) {
+              for (const skill of entry.skills ?? []) {
+                if (!fs.existsSync(`${entry.source}/${skill}/SKILL.md`)) {
+                  throw new Error(`Missing skill ${skill} for ${entry.name}`);
+                }
+              }
+            }
             const codex = require("./.agents/plugins/marketplace.json");
             for (const entry of codex.plugins) {
               const path = entry.source.path;
@@ -41,8 +44,6 @@ jobs:
               }
             }
           '
-      - name: Bundled tracing skill matches the standalone skill
-        run: cmp skills/glassray-otel/SKILL.md plugins/glassray/skills/glassray-otel/SKILL.md
       - name: Every docs link in every SKILL.md resolves
         # Only documentation / site links (glassray.ai). API endpoints on app.glassray.ai are
         # not pages - the OTLP base path 404s on GET by design - and the skill's own curl
@@ -50,7 +51,7 @@ jobs:
         run: |
           set -e
           rm -f /tmp/broken-links
-          for f in skills/*/SKILL.md plugins/*/skills/*/SKILL.md; do
+          for f in plugins/*/skills/*/SKILL.md; do
             grep -oE 'https://glassray\.ai/[A-Za-z0-9./_-]*' "$f" | sed 's/[.)]*$//' | sort -u | while read -r u; do
               code=$(curl -sSL -o /dev/null -w '%{http_code}' --max-time 30 "$u" || echo 000)
               # 405 = the URL exists but is POST-only (the docs-search MCP endpoint answers GET that way).

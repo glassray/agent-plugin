@@ -3,9 +3,9 @@
 This repo is the canonical home of Glassray's agent skills. A skill here is consumed two ways,
 and has to work in both:
 
-1. **Installed as a directory** - `npx skills add glassray/skills`, or the Claude Code plugin
+1. **Installed as a directory** - `npx skills add glassray/agent-plugin`, or the Claude Code plugin
    marketplace (`.claude-plugin/marketplace.json`).
-2. **Fetched as one file** - `https://glassray.ai/SKILL.md` serves `skills/glassray-otel/SKILL.md`
+2. **Fetched as one file** - `https://glassray.ai/SKILL.md` serves `plugins/glassray/skills/glassray-otel/SKILL.md`
    verbatim to an agent that can only read a URL. (The Glassray monorepo vendors this repo as a
    git submodule to keep that copy identical.)
 
@@ -16,8 +16,7 @@ and depth lives in the public docs (`https://glassray.ai/docs/...`, `llms.txt`,
 ## Layout
 
 ```
-skills/<name>/SKILL.md                  standalone skills
-plugins/<plugin>/skills/<name>/SKILL.md skills bundled with a plugin
+plugins/glassray/skills/<name>/SKILL.md canonical skills
 .claude-plugin/marketplace.json         Claude Code marketplace
 .agents/plugins/marketplace.json        Codex marketplace
 .github/workflows/validate.yml          reference validator + link check, on every push
@@ -25,9 +24,8 @@ plugins/<plugin>/skills/<name>/SKILL.md skills bundled with a plugin
 
 The skill folder name must match `name` in its frontmatter.
 
-Edit `skills/glassray-otel/SKILL.md` when changing tracing setup. Copy that file to
-`plugins/glassray/skills/glassray-otel/SKILL.md` for the bundled install. CI checks that the
-two files match.
+The full plugin and the standalone tracing install both use
+`plugins/glassray/skills/glassray-otel/SKILL.md`.
 
 ## Rules
 
@@ -47,7 +45,7 @@ two files match.
 ## Before opening a PR
 
 ```bash
-for d in skills/*/ plugins/*/skills/*/; do npx -y skills-ref validate "$d"; done
+for d in plugins/*/skills/*/; do npx -y skills-ref validate "$d"; done
 ```
 
 CI runs the same validator plus a link check over every `https://` URL in every `SKILL.md`.

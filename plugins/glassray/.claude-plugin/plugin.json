@@ -1,12 +1,12 @@
 {
   "name": "glassray",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Set up tracing and create and calibrate Glassray evaluators with your coding agent.",
   "author": {
     "name": "Glassray"
   },
   "homepage": "https://glassray.ai",
-  "repository": "https://github.com/glassray/skills",
+  "repository": "https://github.com/glassray/agent-plugin",
   "license": "MIT",
   "icon": "./assets/icon.png",
   "privacyPolicyUrl": "https://www.getvera.ai/privacy-policy"

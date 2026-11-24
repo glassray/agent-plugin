@@ -7,7 +7,7 @@ Set up tracing and create and calibrate custom evaluators from Claude Code or Co
 ### Claude Code
 
 ```bash
-claude plugin marketplace add glassray/skills
+claude plugin marketplace add glassray/agent-plugin
 claude plugin install glassray@glassray-skills
 ```
 
@@ -16,13 +16,15 @@ Start a new Claude Code session. Run `/mcp`, select `plugin:glassray:glassray`, 
 ### Codex
 
 ```bash
-codex plugin marketplace add glassray/skills
+codex plugin marketplace add glassray/agent-plugin
 codex plugin add glassray@glassray-skills
 ```
 
 Start a new Codex session and sign in to Glassray when prompted. In the desktop app, you can also install **glassray** from **Glassray** in the Plugins directory after adding the marketplace.
 
 ## Update
+
+The marketplace ID is still `glassray-skills`, so existing installs use the same update commands.
 
 - **Claude Code** — run `claude plugin marketplace update glassray-skills`, then `claude plugin update glassray@glassray-skills`.
 - **Codex** — run `codex plugin marketplace upgrade glassray-skills`, then `codex plugin add glassray@glassray-skills`.
