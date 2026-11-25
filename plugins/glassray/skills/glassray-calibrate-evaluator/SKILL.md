@@ -13,7 +13,9 @@ Use plain language in every message to the user, from the first update to the fi
 
 For example, say “I checked 50 new reports. Five raised the same question about what should count. I’ll show you one of those reports before we change the rule.”
 
-**When asking a question.** Lead with the question or decision. Give just enough context to explain why it matters or what will change. For a rule question, show a short excerpt of what the agent was given and what it produced. Add a second example only when it helps the person draw the line. Keep exact trace names, section labels and IDs that help them find the evidence. Use plain language around those labels. Make each answer choice say what it means. Use buttons when available or short labels in chat.
+**When asking a question.** Lead with the question or decision. Name what the user is deciding about. Say “draft evaluator” and give its reference and version when saved. If the changes are still local, say which evaluator or deviation they belong to. Give just enough context to explain why it matters or what will change. For a rule question, show a short excerpt of what the agent was given and what it produced. Add a second example only when it helps the person draw the line. Keep exact trace names, section labels and IDs that help them find the evidence. Use plain language around those labels. Make each answer choice say what it means. Use buttons when available or short labels in chat.
+
+When a test behaves unexpectedly, tell the user what you expected and what actually happened, using a short example when it helps. Say what caused it if you know. Say what you are changing, such as the evaluator code, the saved rule or the model. When asking to rerun, say what the rerun will verify. Distinguish checks with sample answers from results from a live model.
 
 ## Check the draft and samples
 
@@ -25,7 +27,7 @@ For example, say “I checked 50 new reports. Five raised the same question abou
 
 Before asking to run a model, say where it will run and what pays for it. Verify the billing route or say when you cannot.
 
-- **Subscription.** Name the plan or service, such as Claude Max, ChatGPT or Cursor, and say the test uses its quota. Label API-rate estimates as comparisons.
+- **Subscription.** Name the plan or service, such as Claude Max, ChatGPT or Cursor, and say the test is included in the subscription, uses its quota and has no separate API charge when covered by it. Give an API-rate comparison only if the user asks.
 - **Glassray.** Name the workspace and show the estimate in the units the preview gives. Say the test uses Glassray credits when credits apply. If the run uses the workspace's own API key, say which provider bills that account.
 - **Provider API.** Name the provider, such as Anthropic or OpenAI, and say usage is billed to the account that owns the key.
 
