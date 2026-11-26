@@ -1,7 +1,7 @@
 {
   "name": "glassray",
-  "version": "0.2.6",
-  "description": "Set up tracing and create and calibrate Glassray evaluators with your coding agent.",
+  "version": "0.2.7",
+  "description": "Set up tracing, create and calibrate Glassray evaluators, and test fixes with your coding agent.",
   "author": {
     "name": "Glassray"
   },

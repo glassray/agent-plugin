@@ -1,13 +1,14 @@
 # Glassray agent plugin
 
-Set up tracing and create and calibrate custom evaluators with [Glassray](https://glassray.ai).
-The plugin bundles three [Agent Skills](https://agentskills.io) and connects your coding agent to your Glassray workspace over MCP.
+Set up tracing, create and calibrate custom evaluators, and test fixes with [Glassray](https://glassray.ai).
+The plugin bundles four [Agent Skills](https://agentskills.io) and connects your coding agent to your Glassray workspace over MCP.
 
 ## Skills included
 
 - **Set up tracing.** Connect the tracing in your repo and verify that a test trace reaches Glassray. [Tracing skill](plugins/glassray/skills/glassray-otel/SKILL.md)
 - **Create an evaluator.** Use evidence from traces to draft and test an evaluator for a deviation. [Creation skill](plugins/glassray/skills/glassray-create-evaluator/SKILL.md)
 - **Calibrate an evaluator.** Test the draft on sampled traces, resolve edge cases, and check how consistently it behaves. [Calibration skill](plugins/glassray/skills/glassray-calibrate-evaluator/SKILL.md)
+- **Test a fix.** Replay stored traces through your code at production's commit and at the fix, judge both with the deviation's evaluator, and record the result. [Fix-testing skill](plugins/glassray/skills/glassray-test-fix/SKILL.md)
 
 ## Install the plugin
 

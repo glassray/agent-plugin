@@ -1,6 +1,6 @@
 # Glassray plugin
 
-Set up tracing and create and calibrate custom evaluators from Claude Code or Codex. The plugin connects your agent to Glassray over MCP.
+Set up tracing, create and calibrate custom evaluators, and test fixes from Claude Code or Codex. The plugin connects your agent to Glassray over MCP.
 
 ## Installation
 
@@ -34,5 +34,6 @@ The marketplace ID is still `glassray-skills`, so existing installs use the same
 - “Set up Glassray tracing for this repo.” The agent checks the tracing you already have and verifies a test trace in Glassray.
 - “Draft a Glassray evaluator for DEV-123.” Use a deviation number from your Glassray workspace.
 - “Resume calibration for DEV-123/E1.” Use the reference for your evaluator.
+- “Test my fix on this branch for DEV-123.” The agent replays stored traces at production's commit and at your branch, judges both and records a fix test.
 
-Local evaluator checks require Node.js and `npx`. See the [Glassray MCP setup guide](https://glassray.ai/docs/mcp-server) to connect an API key or another client.
+Local evaluator checks and replays require Node.js and `npx`; replays also need `git`. See the [Glassray MCP setup guide](https://glassray.ai/docs/mcp-server) to connect an API key or another client.
