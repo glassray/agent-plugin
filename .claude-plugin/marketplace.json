@@ -11,7 +11,7 @@
   "plugins": [
     {
       "name": "glassray",
-      "description": "Set up tracing, create and calibrate Glassray evaluators, and test fixes with your coding agent.",
+      "description": "Set up tracing, investigate traces, create and calibrate Glassray evaluators, and test fixes with your coding agent.",
       "source": "./plugins/glassray"
     },
     {
