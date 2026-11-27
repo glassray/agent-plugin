@@ -1,6 +1,6 @@
 # Glassray plugin
 
-Set up tracing, create and calibrate custom evaluators, and test fixes from Claude Code or Codex. The plugin connects your agent to Glassray over MCP.
+Set up tracing, investigate traces, create and calibrate custom evaluators, and test fixes from Claude Code or Codex. The plugin connects your agent to Glassray over MCP.
 
 ## Installation
 
@@ -31,6 +31,7 @@ The marketplace ID is still `glassray-skills`, so existing installs use the same
 
 ## Try it
 
+- “Help me investigate our recent traces. What flows or companies could we look at?”
 - “Set up Glassray tracing for this repo.” The agent checks the tracing you already have and verifies a test trace in Glassray.
 - “Draft a Glassray evaluator for DEV-123.” Use a deviation number from your Glassray workspace.
 - “Resume calibration for DEV-123/E1.” Use the reference for your evaluator.

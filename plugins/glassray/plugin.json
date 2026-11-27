@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "glassray",
-  "version": "0.2.7",
-  "description": "Set up tracing, create and calibrate Glassray evaluators, and test fixes with your coding agent.",
+  "version": "0.3.0",
+  "description": "Set up tracing, investigate traces, create and calibrate Glassray evaluators, and test fixes with your coding agent.",
   "author": {
     "name": "Glassray"
   },
@@ -14,7 +14,7 @@
       "interface": {
         "displayName": "Glassray",
         "shortDescription": "Tracing and evaluators",
-        "longDescription": "Send traces from your code to Glassray, draft and calibrate custom evaluators, and test fixes against them in your connected Glassray workspace.",
+        "longDescription": "Send traces from your code to Glassray, investigate recent cases, draft and calibrate custom evaluators, and test fixes against them in your connected Glassray workspace.",
         "developerName": "Glassray",
         "category": "Developer Tools",
         "websiteURL": "https://glassray.ai",
